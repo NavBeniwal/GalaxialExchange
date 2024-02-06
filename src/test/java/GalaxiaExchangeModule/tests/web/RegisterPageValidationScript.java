@@ -24,7 +24,7 @@ public class RegisterPageValidationScript extends TestBase {
     public void verifyRegisterPageFirstNameRequiredValidationFunctionality() throws IOException, InterruptedException {
         test = Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {
-            Assert.assertEquals(registerPageValidation.validateRegisterPageFirstNameRequiredValidation(test),true);
+            Assert.assertEquals(registerPageValidation.validateRegisterPageFirstNameRequiredValidation(PropertyReaderOptimized.getExcelSheetValue(17,1),test),true);
             test.log(LogStatus.PASS,"All conditions are verified.");
         } catch (Error | Exception e) {
             test.log(LogStatus.FAIL,"All conditions aren't verified.");
@@ -37,7 +37,7 @@ public class RegisterPageValidationScript extends TestBase {
     public void verifyRegisterPageLastNameRequiredValidationFunctionality() throws IOException, InterruptedException {
         test = Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {
-            Assert.assertEquals(registerPageValidation.validateRegisterPageLastNameRequiredValidation(test),true);
+            Assert.assertEquals(registerPageValidation.validateRegisterPageLastNameRequiredValidation(PropertyReaderOptimized.getExcelSheetValue(18,1),test),true);
             test.log(LogStatus.PASS,"All conditions are verified.");
         } catch (Error | Exception e) {
             test.log(LogStatus.FAIL,"All conditions aren't verified.");
@@ -50,7 +50,7 @@ public class RegisterPageValidationScript extends TestBase {
     public void verifyRegisterPageDateOfBirthRequiredValidationFunctionality() throws IOException, InterruptedException {
         test = Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {
-            Assert.assertEquals(registerPageValidation.validateRegisterPageDateOfBirthRequiredValidation(test),true);
+            Assert.assertEquals(registerPageValidation.validateRegisterPageDateOfBirthRequiredValidation(PropertyReaderOptimized.getExcelSheetValue(23,4),test),true);
             test.log(LogStatus.PASS,"All conditions are verified.");
         } catch (Error | Exception e) {
             test.log(LogStatus.FAIL,"All conditions aren't verified.");
@@ -86,6 +86,19 @@ public class RegisterPageValidationScript extends TestBase {
     }
 
     @Test(priority = 6)
+    public void verifyRegisterPageConfirmPasswordRequiredValidationFunctionality() throws IOException, InterruptedException {
+        test = Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
+        try {
+            softAssert.assertEquals(registerPageValidation.validateRegisterPageConfirmPasswordRequiredValidation(PropertyReaderOptimized.getExcelSheetValue(20, 1),test), true);
+            test.log(LogStatus.PASS,"All conditions are verified.");
+        } catch (Error | Exception e) {
+            test.log(LogStatus.FAIL,"All conditions aren't verified.");
+            Assert.fail(String.valueOf(e.getStackTrace()));
+            softAssert.assertAll();
+        }
+    }
+
+    @Test(priority = 7)
     public void verifyRegisterPageTermsAndConditionsRequiredValidationFunctionality() throws IOException, InterruptedException {
         test = Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {
@@ -98,24 +111,11 @@ public class RegisterPageValidationScript extends TestBase {
         }
     }
 
-    @Test(priority = 7)
+    @Test(priority = 8)
     public void verifyFirstNameTextFieldValidationWithNumericValueFunctionality() throws IOException, InterruptedException {
         test = Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {
-            softAssert.assertEquals(registerPageValidation.validateFirstNameTextFieldValidationWithNumericValue(test), true);
-            test.log(LogStatus.PASS,"All conditions are verified.");
-        } catch (Error | Exception e) {
-            test.log(LogStatus.FAIL,"All conditions aren't verified.");
-            Assert.fail(String.valueOf(e.getStackTrace()));
-            softAssert.assertAll();
-        }
-    }
-
-    @Test(priority = 8)
-    public void verifyFirstNameTextFieldValidationWithSpecialCharacterValueFunctionality() throws IOException, InterruptedException {
-        test = Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
-        try {
-            softAssert.assertEquals(registerPageValidation.validateFirstNameTextFieldValidationWithSpecialCharacterValue(test), true);
+            softAssert.assertEquals(registerPageValidation.validateFirstNameTextFieldValidationWithNumericValue(PropertyReaderOptimized.getExcelSheetValue(24, 4),test), true);
             test.log(LogStatus.PASS,"All conditions are verified.");
         } catch (Error | Exception e) {
             test.log(LogStatus.FAIL,"All conditions aren't verified.");
@@ -125,10 +125,10 @@ public class RegisterPageValidationScript extends TestBase {
     }
 
     @Test(priority = 9)
-    public void verifyFirstNameTextFieldValidationWithAlphaNumericValueFunctionality() throws IOException, InterruptedException {
+    public void verifyFirstNameTextFieldValidationWithSpecialCharacterValueFunctionality() throws IOException, InterruptedException {
         test = Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {
-            softAssert.assertEquals(registerPageValidation.validateFirstNameTextFieldValidationWithAlphaNumericValue(test), true);
+            softAssert.assertEquals(registerPageValidation.validateFirstNameTextFieldValidationWithSpecialCharacterValue(PropertyReaderOptimized.getExcelSheetValue(24, 4),test), true);
             test.log(LogStatus.PASS,"All conditions are verified.");
         } catch (Error | Exception e) {
             test.log(LogStatus.FAIL,"All conditions aren't verified.");
@@ -138,10 +138,10 @@ public class RegisterPageValidationScript extends TestBase {
     }
 
     @Test(priority = 10)
-    public void verifyFirstNameTextFieldValidationWithAlphaSpecialCharacterValueFunctionality() throws IOException, InterruptedException {
+    public void verifyFirstNameTextFieldValidationWithAlphaNumericValueFunctionality() throws IOException, InterruptedException {
         test = Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {
-            softAssert.assertEquals(registerPageValidation.validateFirstNameTextFieldValidationWithAlphaSpecialCharacterValue(test), true);
+            softAssert.assertEquals(registerPageValidation.validateFirstNameTextFieldValidationWithAlphaNumericValue(PropertyReaderOptimized.getExcelSheetValue(24, 4),test), true);
             test.log(LogStatus.PASS,"All conditions are verified.");
         } catch (Error | Exception e) {
             test.log(LogStatus.FAIL,"All conditions aren't verified.");
@@ -151,10 +151,10 @@ public class RegisterPageValidationScript extends TestBase {
     }
 
     @Test(priority = 11)
-    public void verifyFirstNameTextFieldValidationWithMoreThanTwentyFiveCharactersFunctionality() throws IOException, InterruptedException {
+    public void verifyFirstNameTextFieldValidationWithAlphaSpecialCharacterValueFunctionality() throws IOException, InterruptedException {
         test = Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {
-            softAssert.assertEquals(registerPageValidation.validateFirstNameTextFieldValidationWithMoreThanTwentyFiveCharacters(test), true);
+            softAssert.assertEquals(registerPageValidation.validateFirstNameTextFieldValidationWithAlphaSpecialCharacterValue(PropertyReaderOptimized.getExcelSheetValue(24, 4),test), true);
             test.log(LogStatus.PASS,"All conditions are verified.");
         } catch (Error | Exception e) {
             test.log(LogStatus.FAIL,"All conditions aren't verified.");
@@ -164,10 +164,10 @@ public class RegisterPageValidationScript extends TestBase {
     }
 
     @Test(priority = 12)
-    public void verifyLastNameTextFieldValidationWithNumericValueFunctionality() throws IOException, InterruptedException {
+    public void verifyFirstNameTextFieldValidationWithMoreThanTwentyFiveCharactersFunctionality() throws IOException, InterruptedException {
         test = Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {
-            softAssert.assertEquals(registerPageValidation.validateLastNameTextFieldValidationWithNumericValue(test), true);
+            softAssert.assertEquals(registerPageValidation.validateFirstNameTextFieldValidationWithMoreThanTwentyFiveCharacters(PropertyReaderOptimized.getExcelSheetValue(27, 4),test), true);
             test.log(LogStatus.PASS,"All conditions are verified.");
         } catch (Error | Exception e) {
             test.log(LogStatus.FAIL,"All conditions aren't verified.");
@@ -177,10 +177,10 @@ public class RegisterPageValidationScript extends TestBase {
     }
 
     @Test(priority = 13)
-    public void verifyLastNameTextFieldValidationWithSpecialCharacterValueValidationFunctionality() throws IOException, InterruptedException {
+    public void verifyLastNameTextFieldValidationWithNumericValueFunctionality() throws IOException, InterruptedException {
         test = Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {
-            softAssert.assertEquals(registerPageValidation.validateLastNameTextFieldValidationWithSpecialCharacterValue(test), true);
+            softAssert.assertEquals(registerPageValidation.validateLastNameTextFieldValidationWithNumericValue(PropertyReaderOptimized.getExcelSheetValue(24, 4),test), true);
             test.log(LogStatus.PASS,"All conditions are verified.");
         } catch (Error | Exception e) {
             test.log(LogStatus.FAIL,"All conditions aren't verified.");
@@ -190,10 +190,10 @@ public class RegisterPageValidationScript extends TestBase {
     }
 
     @Test(priority = 14)
-    public void verifyLastNameTextFieldValidationWithAlphaNumericValueFunctionality() throws IOException, InterruptedException {
+    public void verifyLastNameTextFieldValidationWithSpecialCharacterValueValidationFunctionality() throws IOException, InterruptedException {
         test = Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {
-            softAssert.assertEquals(registerPageValidation.validateLastNameTextFieldValidationWithAlphaNumericValue(test), true);
+            softAssert.assertEquals(registerPageValidation.validateLastNameTextFieldValidationWithSpecialCharacterValue(PropertyReaderOptimized.getExcelSheetValue(24, 4),test), true);
             test.log(LogStatus.PASS,"All conditions are verified.");
         } catch (Error | Exception e) {
             test.log(LogStatus.FAIL,"All conditions aren't verified.");
@@ -203,10 +203,10 @@ public class RegisterPageValidationScript extends TestBase {
     }
 
     @Test(priority = 15)
-    public void verifyLastNameTextFieldValidationWithAlphaSpecialCharacterValueFunctionality() throws IOException, InterruptedException {
+    public void verifyLastNameTextFieldValidationWithAlphaNumericValueFunctionality() throws IOException, InterruptedException {
         test = Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {
-            softAssert.assertEquals(registerPageValidation.validateLastNameTextFieldValidationWithAlphaSpecialCharacterValue(test), true);
+            softAssert.assertEquals(registerPageValidation.validateLastNameTextFieldValidationWithAlphaNumericValue(PropertyReaderOptimized.getExcelSheetValue(24, 4),test), true);
             test.log(LogStatus.PASS,"All conditions are verified.");
         } catch (Error | Exception e) {
             test.log(LogStatus.FAIL,"All conditions aren't verified.");
@@ -216,10 +216,10 @@ public class RegisterPageValidationScript extends TestBase {
     }
 
     @Test(priority = 16)
-    public void verifyLastNameTextFieldValidationWithMoreThanTwentyFiveCharactersFunctionality() throws IOException, InterruptedException {
+    public void verifyLastNameTextFieldValidationWithAlphaSpecialCharacterValueFunctionality() throws IOException, InterruptedException {
         test = Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {
-            softAssert.assertEquals(registerPageValidation.validateLastNameTextFieldValidationWithMoreThanTwentyFiveCharacters(test), true);
+            softAssert.assertEquals(registerPageValidation.validateLastNameTextFieldValidationWithAlphaSpecialCharacterValue(PropertyReaderOptimized.getExcelSheetValue(24, 4),test), true);
             test.log(LogStatus.PASS,"All conditions are verified.");
         } catch (Error | Exception e) {
             test.log(LogStatus.FAIL,"All conditions aren't verified.");
@@ -229,6 +229,19 @@ public class RegisterPageValidationScript extends TestBase {
     }
 
     @Test(priority = 17)
+    public void verifyLastNameTextFieldValidationWithMoreThanTwentyFiveCharactersFunctionality() throws IOException, InterruptedException {
+        test = Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
+        try {
+            softAssert.assertEquals(registerPageValidation.validateLastNameTextFieldValidationWithMoreThanTwentyFiveCharacters(PropertyReaderOptimized.getExcelSheetValue(27, 4),test), true);
+            test.log(LogStatus.PASS,"All conditions are verified.");
+        } catch (Error | Exception e) {
+            test.log(LogStatus.FAIL,"All conditions aren't verified.");
+            Assert.fail(String.valueOf(e.getStackTrace()));
+            softAssert.assertAll();
+        }
+    }
+
+    @Test(priority = 18)
     public void verifyEmailTextFieldValidationWithAlreadyExistEmailAddressFunctionality() throws IOException, InterruptedException {
         test=Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {
@@ -241,7 +254,7 @@ public class RegisterPageValidationScript extends TestBase {
         }
     }
 
-    @Test(priority = 18)
+    @Test(priority = 19)
     public void verifyRegisterPageEmailTextFieldInvalidEmailAddressValidationWithOnlyNumericValueFunctionality() throws IOException, InterruptedException {
         test=Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {
@@ -254,7 +267,7 @@ public class RegisterPageValidationScript extends TestBase {
         }
     }
 
-    @Test(priority = 19)
+    @Test(priority = 20)
     public void verifyRegisterPageEmailTextFieldInvalidEmailAddressValidationWithOnlyAlphabeticValueFunctionality() throws IOException, InterruptedException {
         test=Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {
@@ -267,7 +280,7 @@ public class RegisterPageValidationScript extends TestBase {
         }
     }
 
-    @Test(priority = 20)
+    @Test(priority = 21)
     public void verifyRegisterPageEmailTextFieldInvalidEmailAddressValidationWithAlphaNumericValueFunctionality() throws IOException, InterruptedException {
         test=Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {
@@ -280,7 +293,7 @@ public class RegisterPageValidationScript extends TestBase {
         }
     }
 
-    @Test(priority = 21)
+    @Test(priority = 22)
     public void verifyRegisterPageEmailTextFieldInvalidEmailAddressValidationWithMultipleAtTheRateValueFunctionality() throws IOException, InterruptedException {
         test=Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {
@@ -293,7 +306,7 @@ public class RegisterPageValidationScript extends TestBase {
         }
     }
 
-    @Test(priority = 22)
+    @Test(priority = 23)
     public void verifyRegisterPageEmailTextFieldInvalidEmailAddressValidationWithOnlySpecialCharacterValueFunctionality() throws IOException, InterruptedException {
         test=Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {
@@ -306,7 +319,7 @@ public class RegisterPageValidationScript extends TestBase {
         }
     }
 
-    @Test(priority = 23)
+    @Test(priority = 24)
     public void verifyRegisterPageEmailTextFieldInvalidEmailAddressValidationWithoutAtTheRateFunctionality() throws IOException, InterruptedException {
         test=Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {
@@ -319,7 +332,7 @@ public class RegisterPageValidationScript extends TestBase {
         }
     }
 
-    @Test(priority = 24)
+    @Test(priority = 25)
     public void verifyRegisterPageEmailTextFieldInvalidEmailAddressValidationWithMultipleDotFunctionality() throws IOException, InterruptedException {
         test=Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {
@@ -332,7 +345,7 @@ public class RegisterPageValidationScript extends TestBase {
         }
     }
 
-    @Test(priority = 25)
+    @Test(priority = 26)
     public void verifyRegisterPagePasswordTextFieldValidationWithLessThanEightCharactersFunctionality() throws IOException, InterruptedException {
         test=Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {
@@ -345,7 +358,7 @@ public class RegisterPageValidationScript extends TestBase {
         }
     }
 
-    @Test(priority = 26)
+    @Test(priority = 27)
     public void verifyRegisterPagePasswordTextFieldWithOnlyNumericValueFunctionality() throws IOException, InterruptedException {
         test=Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {
@@ -358,7 +371,7 @@ public class RegisterPageValidationScript extends TestBase {
         }
     }
 
-    @Test(priority = 27)
+    @Test(priority = 28)
     public void verifyRegisterPagePasswordTextFieldWithOnlySpecialCharacterValueFunctionality() throws IOException, InterruptedException {
         test=Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {
@@ -371,7 +384,7 @@ public class RegisterPageValidationScript extends TestBase {
         }
     }
 
-    @Test(priority = 28)
+    @Test(priority = 29)
     public void verifyRegisterPagePasswordTextFieldWithOnlyAlphabeticValueFunctionality() throws IOException, InterruptedException {
         test=Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {
@@ -384,7 +397,7 @@ public class RegisterPageValidationScript extends TestBase {
         }
     }
 
-    @Test(priority = 29)
+    @Test(priority = 30)
     public void verifyRegisterPagePasswordTextFieldWithAlphaNumericValueFunctionality() throws IOException, InterruptedException {
         test=Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {
@@ -397,7 +410,7 @@ public class RegisterPageValidationScript extends TestBase {
         }
     }
 
-    @Test(priority = 30)
+    @Test(priority = 31)
     public void verifyRegisterPagePasswordTextFieldWithSpecialAndNumericValueFunctionality() throws IOException, InterruptedException {
         test=Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {
@@ -410,7 +423,7 @@ public class RegisterPageValidationScript extends TestBase {
         }
     }
 
-    @Test(priority = 31)
+    @Test(priority = 32)
     public void verifyRegisterPagePasswordTextFieldWithSpecialAndAlphabeticValueFunctionality() throws IOException, InterruptedException {
         test=Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {
@@ -423,7 +436,7 @@ public class RegisterPageValidationScript extends TestBase {
         }
     }
 
-    @Test(priority = 32)
+    @Test(priority = 33)
     public void verifyRegisterPagePasswordTextFieldWithoutUpperCaseValueFunctionality() throws IOException, InterruptedException {
         test=Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {
@@ -436,7 +449,7 @@ public class RegisterPageValidationScript extends TestBase {
         }
     }
 
-    @Test(priority = 33)
+    @Test(priority = 34)
     public void verifyRegisterPagePasswordTextFieldWithoutLowerCaseValueFunctionality() throws IOException, InterruptedException {
         test=Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {
@@ -449,7 +462,7 @@ public class RegisterPageValidationScript extends TestBase {
         }
     }
 
-    @Test(priority = 34)
+    @Test(priority = 35)
     public void verifyRegisterPagePasswordTextFieldWithoutNumericValueFunctionality() throws IOException, InterruptedException {
         test= Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {
@@ -462,7 +475,7 @@ public class RegisterPageValidationScript extends TestBase {
         }
     }
 
-    @Test(priority = 35)
+    @Test(priority = 36)
     public void verifyRegisterPagePasswordTextFieldWithoutSpecialCharacterValueFunctionality() throws IOException, InterruptedException {
         test=Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {
@@ -475,11 +488,11 @@ public class RegisterPageValidationScript extends TestBase {
         }
     }
 
-    @Test(priority = 36)
-    public void verifyRegisterPageConfirmPasswordTextFieldValidationFunctionality() throws IOException, InterruptedException {
+    @Test(priority = 37)
+    public void verifyRegisterPageConfirmPasswordMustMatchValidationFunctionality() throws IOException, InterruptedException {
         test=Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {
-            softAssert.assertEquals(registerPageValidation.validateRegisterPageConfirmPasswordTextFieldValidation(test),true);
+            softAssert.assertEquals(registerPageValidation.validateRegisterPageConfirmPasswordMustMatchValidation(PropertyReaderOptimized.getExcelSheetValue(26, 4),test),true);
             test.log(LogStatus.PASS,"All conditions are verified.");
         } catch (Error | Exception e) {
             test.log(LogStatus.FAIL,"All conditions aren't verified.");
@@ -488,7 +501,7 @@ public class RegisterPageValidationScript extends TestBase {
         }
     }
 
-    @Test(priority = 37)
+    @Test(priority = 38)
     public void verifyRegisterPagePhoneNumberRequiredValidationFunctionality() throws IOException, InterruptedException {
         test=Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {
@@ -501,7 +514,7 @@ public class RegisterPageValidationScript extends TestBase {
         }
     }
 
-    @Test(priority = 38)
+    @Test(priority = 39)
     public void verifyRegisterPageExistPhoneNumberErrorMsgFunctionality() throws IOException, InterruptedException {
         test=Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {
@@ -514,7 +527,7 @@ public class RegisterPageValidationScript extends TestBase {
         }
     }
 
-    @Test(priority = 39)
+    @Test(priority = 40)
     public void verifyRegisterPageInvalidPhoneNumberValidationFunctionality() throws IOException, InterruptedException {
         test=Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {
@@ -527,7 +540,7 @@ public class RegisterPageValidationScript extends TestBase {
         }
     }
 
-    @Test(priority = 40)
+    @Test(priority = 41)
     public void verifyRegisterPageRequiredOtpValidationFunctionality() throws IOException, InterruptedException {
         test=Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {
@@ -540,7 +553,7 @@ public class RegisterPageValidationScript extends TestBase {
         }
     }
 
-    @Test(priority = 41)
+    @Test(priority = 42)
     public void verifyRegisterPageInvalidOtpValidationFunctionality() throws IOException, InterruptedException {
         test=Reports.createTest(new Object() {}.getClass().getEnclosingMethod().getName(), reports);
         try {

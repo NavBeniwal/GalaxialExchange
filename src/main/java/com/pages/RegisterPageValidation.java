@@ -109,7 +109,7 @@ public class RegisterPageValidation {
     @FindBy(xpath = "//span[text()='Submit']")
     private WebElement submitBtn;
 
-    public boolean validateRegisterPageFirstNameRequiredValidation(ExtentTest test) throws IOException, InterruptedException {
+    public boolean validateRegisterPageFirstNameRequiredValidation(String firstName,ExtentTest test) throws IOException, InterruptedException {
         boolean isTrue = false;
 
         //Click on the signup button
@@ -122,60 +122,63 @@ public class RegisterPageValidation {
         basePage.click(createAccountBtn);
         test.log(LogStatus.INFO, test.addScreenCapture(BasePage.getScreenCapture(driver)), "Verified clicked on the create account button.");
 
-        //Get the validation
-        //String emailValidation=emailRequiredValidation.getText();
+        //Get the value
+        String firstNameValidation=firstNameRequiredValidation.getText();
 
         //Compare the values
         basePage.waitForElementToBeVisible(firstNameRequiredValidation);
-        if (firstNameRequiredValidation.isDisplayed()) {
+        if (firstNameValidation.equals(firstName)) {
             isTrue = true;
             test.log(LogStatus.PASS, test.addScreenCapture(BasePage.getScreenCapture(driver)), "Verified First Name is required validation is matched.");
         } else {
             isTrue = false;
             test.log(LogStatus.FAIL, test.addScreenCapture(BasePage.getScreenCapture(driver)), "Verified Email is required validation isn't matched.");
         }
+
         return isTrue;
     }
 
-    public boolean validateRegisterPageLastNameRequiredValidation(ExtentTest test) throws IOException, InterruptedException {
+    public boolean validateRegisterPageLastNameRequiredValidation(String lastName,ExtentTest test) throws IOException, InterruptedException {
         boolean isTrue = false;
 
-        //Get the validation
-        //String emailValidation=emailRequiredValidation.getText();
+        //Get the value
+        String lastNameValidation=lastNameRequiredValidation.getText();
 
         //Compare the values
         basePage.waitForElementToBeVisible(firstNameRequiredValidation);
-        if (lastNameRequiredValidation.isDisplayed()) {
+        if (lastNameValidation.equals(lastName)) {
             isTrue = true;
             test.log(LogStatus.PASS, test.addScreenCapture(BasePage.getScreenCapture(driver)), "Verified Last Name is required validation is matched.");
         } else {
             isTrue = false;
             test.log(LogStatus.FAIL, test.addScreenCapture(BasePage.getScreenCapture(driver)), "Verified Last Name is required validation isn't matched.");
         }
+
         return isTrue;
     }
 
-    public boolean validateRegisterPageDateOfBirthRequiredValidation(ExtentTest test) throws IOException, InterruptedException {
+    public boolean validateRegisterPageDateOfBirthRequiredValidation(String dob,ExtentTest test) throws IOException, InterruptedException {
         boolean isTrue = false;
 
-        //Get the validation
-        //String emailValidation=emailRequiredValidation.getText();
+        //Get the value
+        String dobValidation=dobRequiredValidation.getText();
 
         //Compare the values
         basePage.waitForElementToBeVisible(dobRequiredValidation);
-        if (dobRequiredValidation.isDisplayed()) {
+        if (dobValidation.equals(dob)) {
             isTrue = true;
             test.log(LogStatus.PASS, test.addScreenCapture(BasePage.getScreenCapture(driver)), "Verified Date of birth is required validation is matched.");
         } else {
             isTrue = false;
             test.log(LogStatus.FAIL, test.addScreenCapture(BasePage.getScreenCapture(driver)), "Verified Date of birth is required validation isn't matched.");
         }
+
         return isTrue;
     }
     public boolean validateRegisterPageEmailRequiredValidation(String email,ExtentTest test) throws IOException, InterruptedException {
         boolean isTrue = false;
 
-        //Get the validation
+        //Get the value
         String emailValidation=emailRequiredValidation.getText();
 
         //Compare the values
@@ -187,12 +190,13 @@ public class RegisterPageValidation {
             isTrue = false;
             test.log(LogStatus.FAIL, test.addScreenCapture(BasePage.getScreenCapture(driver)), "Verified Email is required validation isn't matched.");
         }
+
         return isTrue;
     }
     public boolean validateRegisterPagePasswordRequiredValidation(String password,ExtentTest test) throws IOException, InterruptedException {
         boolean isTrue=false;
 
-        //Get the validation
+        //Get the value
         String passwordValidation=passwordRequiredValidation.getText();
 
         //Compare the values
@@ -207,28 +211,29 @@ public class RegisterPageValidation {
         return isTrue;
     }
 
-    public boolean validateRegisterPageConfirmPasswordRequiredValidation(ExtentTest test) throws IOException, InterruptedException {
+    public boolean validateRegisterPageConfirmPasswordRequiredValidation(String confirmPassword,ExtentTest test) throws IOException, InterruptedException {
         boolean isTrue = false;
 
-        //Get the validation
-        //String emailValidation=emailRequiredValidation.getText();
+        //Get the value
+        String confirmPasswordValidation=confirmPasswordRequiredValidation.getText();
 
         //Compare the values
         basePage.waitForElementToBeVisible(confirmPasswordRequiredValidation);
-        if (confirmPasswordRequiredValidation.isDisplayed()) {
+        if (confirmPasswordValidation.equals(confirmPassword)) {
             isTrue = true;
             test.log(LogStatus.PASS, test.addScreenCapture(BasePage.getScreenCapture(driver)), "Verified Confirm Password is required validation is matched.");
         } else {
             isTrue = false;
             test.log(LogStatus.FAIL, test.addScreenCapture(BasePage.getScreenCapture(driver)), "Verified Confirm Password is required validation isn't matched.");
         }
+
         return isTrue;
     }
 
     public boolean validateRegisterPageTermsAndConditionsRequiredValidation(String termsAndConditions,ExtentTest test) throws IOException, InterruptedException {
         boolean isTrue=false;
 
-        //Get the validation
+        //Get the value
         String termsAndConditionsValidation=checkBoxValidation.getText();
 
         //Compare the values
@@ -243,7 +248,7 @@ public class RegisterPageValidation {
         return isTrue;
     }
 
-    public boolean validateFirstNameTextFieldValidationWithNumericValue(ExtentTest test) throws IOException, InterruptedException {
+    public boolean validateFirstNameTextFieldValidationWithNumericValue(String onlyAlphabetsAllowed,ExtentTest test) throws IOException, InterruptedException {
         boolean isTrue = false;
 
         String firstName=RandomStringUtils.randomNumeric(6,8);
@@ -253,22 +258,23 @@ public class RegisterPageValidation {
         basePage.enterText(firstNameTextField,firstName);
         test.log(LogStatus.INFO,test.addScreenCapture(BasePage.getScreenCapture(driver)),"Verified entered the value in the first name text field.");
 
-        //Get the validation
-        //String emailValidation=emailRequiredValidation.getText();
+        //Get the value
+        String onlyAlphabetsAllowedVal=onlyAlphabetsAllowedValidation.getText();
 
         //Compare the values
         basePage.waitForElementToBeVisible(onlyAlphabetsAllowedValidation);
-        if (onlyAlphabetsAllowedValidation.isDisplayed()) {
+        if (onlyAlphabetsAllowedVal.equals(onlyAlphabetsAllowed)) {
             isTrue = true;
             test.log(LogStatus.PASS, test.addScreenCapture(BasePage.getScreenCapture(driver)), "Verified Only alphabets are allowed validation is matched.");
         } else {
             isTrue = false;
             test.log(LogStatus.FAIL, test.addScreenCapture(BasePage.getScreenCapture(driver)), "Verified Only alphabets are allowed validation isn't matched.");
         }
+
         return isTrue;
     }
 
-    public boolean validateFirstNameTextFieldValidationWithSpecialCharacterValue(ExtentTest test) throws IOException, InterruptedException {
+    public boolean validateFirstNameTextFieldValidationWithSpecialCharacterValue(String onlyAlphabetsAllowed,ExtentTest test) throws IOException, InterruptedException {
         boolean isTrue = false;
 
         //Remove the value from the first name text field
@@ -281,22 +287,23 @@ public class RegisterPageValidation {
         basePage.enterText(firstNameTextField,"!@#$%&");
         test.log(LogStatus.INFO,test.addScreenCapture(BasePage.getScreenCapture(driver)),"Verified entered the value in the first name text field.");
 
-        //Get the validation
-        //String emailValidation=emailRequiredValidation.getText();
+        //Get the value
+        String onlyAlphabetsAllowedVal=onlyAlphabetsAllowedValidation.getText();
 
         //Compare the values
         basePage.waitForElementToBeVisible(onlyAlphabetsAllowedValidation);
-        if (onlyAlphabetsAllowedValidation.isDisplayed()) {
+        if (onlyAlphabetsAllowedVal.equals(onlyAlphabetsAllowed)) {
             isTrue = true;
             test.log(LogStatus.PASS, test.addScreenCapture(BasePage.getScreenCapture(driver)), "Verified Only alphabets are allowed validation is matched.");
         } else {
             isTrue = false;
             test.log(LogStatus.FAIL, test.addScreenCapture(BasePage.getScreenCapture(driver)), "Verified Only alphabets are allowed validation isn't matched.");
         }
+
         return isTrue;
     }
 
-    public boolean validateFirstNameTextFieldValidationWithAlphaNumericValue(ExtentTest test) throws IOException, InterruptedException {
+    public boolean validateFirstNameTextFieldValidationWithAlphaNumericValue(String onlyAlphabetsAllowed,ExtentTest test) throws IOException, InterruptedException {
         boolean isTrue = false;
 
         String firstName=RandomStringUtils.randomAlphanumeric(6,8);
@@ -311,22 +318,23 @@ public class RegisterPageValidation {
         basePage.enterText(firstNameTextField,firstName);
         test.log(LogStatus.INFO,test.addScreenCapture(BasePage.getScreenCapture(driver)),"Verified entered the value in the first name text field.");
 
-        //Get the validation
-        //String emailValidation=emailRequiredValidation.getText();
+        //Get the value
+        String onlyAlphabetsAllowedVal=onlyAlphabetsAllowedValidation.getText();
 
         //Compare the values
         basePage.waitForElementToBeVisible(onlyAlphabetsAllowedValidation);
-        if (onlyAlphabetsAllowedValidation.isDisplayed()) {
+        if (onlyAlphabetsAllowedVal.equals(onlyAlphabetsAllowed)) {
             isTrue = true;
             test.log(LogStatus.PASS, test.addScreenCapture(BasePage.getScreenCapture(driver)), "Verified Only alphabets are allowed validation is matched.");
         } else {
             isTrue = false;
             test.log(LogStatus.FAIL, test.addScreenCapture(BasePage.getScreenCapture(driver)), "Verified Only alphabets are allowed validation isn't matched.");
         }
+
         return isTrue;
     }
 
-    public boolean validateFirstNameTextFieldValidationWithAlphaSpecialCharacterValue(ExtentTest test) throws IOException, InterruptedException {
+    public boolean validateFirstNameTextFieldValidationWithAlphaSpecialCharacterValue(String onlyAlphabetsAllowed,ExtentTest test) throws IOException, InterruptedException {
         boolean isTrue = false;
 
         //Remove the value from the first name text field
@@ -339,22 +347,23 @@ public class RegisterPageValidation {
         basePage.enterText(firstNameTextField,"abcd@#");
         test.log(LogStatus.INFO,test.addScreenCapture(BasePage.getScreenCapture(driver)),"Verified entered the value in the first name text field.");
 
-        //Get the validation
-        //String emailValidation=emailRequiredValidation.getText();
+        //Get the value
+        String onlyAlphabetsAllowedVal=onlyAlphabetsAllowedValidation.getText();
 
         //Compare the values
         basePage.waitForElementToBeVisible(onlyAlphabetsAllowedValidation);
-        if (onlyAlphabetsAllowedValidation.isDisplayed()) {
+        if (onlyAlphabetsAllowedVal.equals(onlyAlphabetsAllowed)) {
             isTrue = true;
             test.log(LogStatus.PASS, test.addScreenCapture(BasePage.getScreenCapture(driver)), "Verified Only alphabets are allowed validation is matched.");
         } else {
             isTrue = false;
             test.log(LogStatus.FAIL, test.addScreenCapture(BasePage.getScreenCapture(driver)), "Verified Only alphabets are allowed validation isn't matched.");
         }
+
         return isTrue;
     }
 
-    public boolean validateFirstNameTextFieldValidationWithMoreThanTwentyFiveCharacters(ExtentTest test) throws IOException, InterruptedException {
+    public boolean validateFirstNameTextFieldValidationWithMoreThanTwentyFiveCharacters(String maximumCharacters,ExtentTest test) throws IOException, InterruptedException {
         boolean isTrue = false;
 
         String firstName=RandomStringUtils.randomAlphabetic(26,30);
@@ -368,12 +377,12 @@ public class RegisterPageValidation {
         basePage.enterText(firstNameTextField,firstName);
         test.log(LogStatus.INFO,test.addScreenCapture(BasePage.getScreenCapture(driver)),"Verified entered the value in the first name text field.");
 
-        //Get the validation
-        //String emailValidation=emailRequiredValidation.getText();
+        //Get the value
+        String maximumCharactersValidation=maximumTwentyFiveCharactersAllowedValidation.getText();
 
         //Compare the values
         basePage.waitForElementToBeVisible(maximumTwentyFiveCharactersAllowedValidation);
-        if (maximumTwentyFiveCharactersAllowedValidation.isDisplayed()) {
+        if (maximumCharactersValidation.equals(maximumCharacters)) {
             isTrue = true;
             test.log(LogStatus.PASS, test.addScreenCapture(BasePage.getScreenCapture(driver)), "Verified Maximum 25 characters allowed validation is matched.");
         } else {
@@ -392,7 +401,7 @@ public class RegisterPageValidation {
         return isTrue;
     }
 
-    public boolean validateLastNameTextFieldValidationWithNumericValue(ExtentTest test) throws IOException, InterruptedException {
+    public boolean validateLastNameTextFieldValidationWithNumericValue(String onlyAlphabetsAllowed,ExtentTest test) throws IOException, InterruptedException {
         boolean isTrue = false;
 
         String lastName=RandomStringUtils.randomNumeric(6,8);
@@ -402,22 +411,23 @@ public class RegisterPageValidation {
         basePage.enterText(lastNameTextField,lastName);
         test.log(LogStatus.INFO,test.addScreenCapture(BasePage.getScreenCapture(driver)),"Verified entered the value in the last name text field.");
 
-        //Get the validation
-        //String emailValidation=emailRequiredValidation.getText();
+        //Get the value
+        String onlyAlphabetsAllowedVal=onlyAlphabetsAllowedValidation.getText();
 
         //Compare the values
         basePage.waitForElementToBeVisible(onlyAlphabetsAllowedValidation);
-        if (onlyAlphabetsAllowedValidation.isDisplayed()) {
+        if (onlyAlphabetsAllowedVal.equals(onlyAlphabetsAllowed)) {
             isTrue = true;
             test.log(LogStatus.PASS, test.addScreenCapture(BasePage.getScreenCapture(driver)), "Verified Only alphabets are allowed validation is matched.");
         } else {
             isTrue = false;
             test.log(LogStatus.FAIL, test.addScreenCapture(BasePage.getScreenCapture(driver)), "Verified Only alphabets are allowed validation isn't matched.");
         }
+
         return isTrue;
     }
 
-    public boolean validateLastNameTextFieldValidationWithSpecialCharacterValue(ExtentTest test) throws IOException, InterruptedException {
+    public boolean validateLastNameTextFieldValidationWithSpecialCharacterValue(String onlyAlphabetsAllowed,ExtentTest test) throws IOException, InterruptedException {
         boolean isTrue = false;
 
         //Remove the value from the last name text field
@@ -430,22 +440,23 @@ public class RegisterPageValidation {
         basePage.enterText(lastNameTextField,"!@#$%&");
         test.log(LogStatus.INFO,test.addScreenCapture(BasePage.getScreenCapture(driver)),"Verified entered the value in the last name text field.");
 
-        //Get the validation
-        //String emailValidation=emailRequiredValidation.getText();
+        //Get the value
+        String onlyAlphabetsAllowedVal=onlyAlphabetsAllowedValidation.getText();
 
         //Compare the values
         basePage.waitForElementToBeVisible(onlyAlphabetsAllowedValidation);
-        if (onlyAlphabetsAllowedValidation.isDisplayed()) {
+        if (onlyAlphabetsAllowedVal.equals(onlyAlphabetsAllowed)) {
             isTrue = true;
             test.log(LogStatus.PASS, test.addScreenCapture(BasePage.getScreenCapture(driver)), "Verified Only alphabets are allowed validation is matched.");
         } else {
             isTrue = false;
             test.log(LogStatus.FAIL, test.addScreenCapture(BasePage.getScreenCapture(driver)), "Verified Only alphabets are allowed validation isn't matched.");
         }
+
         return isTrue;
     }
 
-    public boolean validateLastNameTextFieldValidationWithAlphaNumericValue(ExtentTest test) throws IOException, InterruptedException {
+    public boolean validateLastNameTextFieldValidationWithAlphaNumericValue(String onlyAlphabetsAllowed,ExtentTest test) throws IOException, InterruptedException {
         boolean isTrue = false;
 
         String lastName=RandomStringUtils.randomAlphanumeric(6,8);
@@ -460,22 +471,23 @@ public class RegisterPageValidation {
         basePage.enterText(lastNameTextField,lastName);
         test.log(LogStatus.INFO,test.addScreenCapture(BasePage.getScreenCapture(driver)),"Verified entered the value in the last name text field.");
 
-        //Get the validation
-        //String emailValidation=emailRequiredValidation.getText();
+        //Get the value
+        String onlyAlphabetsAllowedVal=onlyAlphabetsAllowedValidation.getText();
 
         //Compare the values
         basePage.waitForElementToBeVisible(onlyAlphabetsAllowedValidation);
-        if (onlyAlphabetsAllowedValidation.isDisplayed()) {
+        if (onlyAlphabetsAllowedVal.equals(onlyAlphabetsAllowed)) {
             isTrue = true;
             test.log(LogStatus.PASS, test.addScreenCapture(BasePage.getScreenCapture(driver)), "Verified Only alphabets are allowed validation is matched.");
         } else {
             isTrue = false;
             test.log(LogStatus.FAIL, test.addScreenCapture(BasePage.getScreenCapture(driver)), "Verified Only alphabets are allowed validation isn't matched.");
         }
+
         return isTrue;
     }
 
-    public boolean validateLastNameTextFieldValidationWithAlphaSpecialCharacterValue(ExtentTest test) throws IOException, InterruptedException {
+    public boolean validateLastNameTextFieldValidationWithAlphaSpecialCharacterValue(String onlyAlphabetsAllowed,ExtentTest test) throws IOException, InterruptedException {
         boolean isTrue = false;
 
         //Remove the value from the last name text field
@@ -488,22 +500,23 @@ public class RegisterPageValidation {
         basePage.enterText(lastNameTextField,"abcd@#");
         test.log(LogStatus.INFO,test.addScreenCapture(BasePage.getScreenCapture(driver)),"Verified entered the value in the last name text field.");
 
-        //Get the validation
-        //String emailValidation=emailRequiredValidation.getText();
+        //Get the value
+        String onlyAlphabetsAllowedVal=onlyAlphabetsAllowedValidation.getText();
 
         //Compare the values
         basePage.waitForElementToBeVisible(onlyAlphabetsAllowedValidation);
-        if (onlyAlphabetsAllowedValidation.isDisplayed()) {
+        if (onlyAlphabetsAllowedVal.equals(onlyAlphabetsAllowed)) {
             isTrue = true;
             test.log(LogStatus.PASS, test.addScreenCapture(BasePage.getScreenCapture(driver)), "Verified Only alphabets are allowed validation is matched.");
         } else {
             isTrue = false;
             test.log(LogStatus.FAIL, test.addScreenCapture(BasePage.getScreenCapture(driver)), "Verified Only alphabets are allowed validation isn't matched.");
         }
+
         return isTrue;
     }
 
-    public boolean validateLastNameTextFieldValidationWithMoreThanTwentyFiveCharacters(ExtentTest test) throws IOException, InterruptedException {
+    public boolean validateLastNameTextFieldValidationWithMoreThanTwentyFiveCharacters(String maximumCharacters,ExtentTest test) throws IOException, InterruptedException {
         boolean isTrue = false;
 
         String lastName=RandomStringUtils.randomAlphabetic(26,30);
@@ -518,12 +531,12 @@ public class RegisterPageValidation {
         basePage.enterText(lastNameTextField,lastName);
         test.log(LogStatus.INFO,test.addScreenCapture(BasePage.getScreenCapture(driver)),"Verified entered the value in the last name text field.");
 
-        //Get the validation
-        //String emailValidation=emailRequiredValidation.getText();
+        //Get the value
+        String maximumCharactersValidation=maximumTwentyFiveCharactersAllowedValidation.getText();
 
         //Compare the values
         basePage.waitForElementToBeVisible(maximumTwentyFiveCharactersAllowedValidation);
-        if (maximumTwentyFiveCharactersAllowedValidation.isDisplayed()) {
+        if (maximumCharactersValidation.equals(maximumCharacters)) {
             isTrue = true;
             test.log(LogStatus.PASS, test.addScreenCapture(BasePage.getScreenCapture(driver)), "Verified Maximum 25 characters allowed validation is matched.");
         } else {
@@ -580,6 +593,7 @@ public class RegisterPageValidation {
             isTrue=false;
             test.log(LogStatus.FAIL,test.addScreenCapture(BasePage.getScreenCapture(driver)),"Verified Email is already taken pop-up message isn't matched.");
         }
+
         return isTrue;
     }
 
@@ -613,6 +627,7 @@ public class RegisterPageValidation {
             isTrue=false;
             test.log(LogStatus.FAIL, test.addScreenCapture(BasePage.getScreenCapture(driver)), "Verified Please enter valid email validation isn't matched.");
         }
+
         return isTrue;
     }
 
@@ -672,6 +687,7 @@ public class RegisterPageValidation {
             isTrue=false;
             test.log(LogStatus.FAIL,test.addScreenCapture(BasePage.getScreenCapture(driver)),"Verified Please enter valid email validation isn't matched.");
         }
+
         return isTrue;
     }
 
@@ -701,6 +717,7 @@ public class RegisterPageValidation {
             isTrue=false;
             test.log(LogStatus.FAIL,test.addScreenCapture(BasePage.getScreenCapture(driver)),"Verified Please enter valid email validation isn't matched.");
         }
+
         return isTrue;
     }
 
@@ -727,6 +744,7 @@ public class RegisterPageValidation {
             isTrue=false;
             test.log(LogStatus.FAIL,test.addScreenCapture(BasePage.getScreenCapture(driver)),"Verified Please enter valid email validation isn't matched.");
         }
+
         return isTrue;
     }
 
@@ -756,6 +774,7 @@ public class RegisterPageValidation {
             isTrue=false;
             test.log(LogStatus.FAIL,test.addScreenCapture(BasePage.getScreenCapture(driver)),"Verified Please enter valid email validation isn't matched.");
         }
+
         return isTrue;
     }
 
@@ -1134,7 +1153,7 @@ public class RegisterPageValidation {
         return isTrue;
     }
 
-    public boolean validateRegisterPageConfirmPasswordTextFieldValidation(ExtentTest test) throws InterruptedException, IOException {
+    public boolean validateRegisterPageConfirmPasswordMustMatchValidation(String confirmPasswordMustMatch,ExtentTest test) throws InterruptedException, IOException {
         boolean isTrue = false;
 
         String mailinatorEmail = PropertyReaderOptimized.getKeyValue("registerPageValidationMailinatorEmail");
@@ -1145,9 +1164,12 @@ public class RegisterPageValidation {
         basePage.enterText(confirmPasswordTextField,confirmPassword);
         test.log(LogStatus.INFO, test.addScreenCapture(BasePage.getScreenCapture(driver)),"Verified entered the value in the confirm password text field.");
 
+        //Get the value
+        String confirmPasswordMustMatchVal=confirmPasswordMustMatchValidation.getText();
+
         //Compare the values
         basePage.waitForElementToBeVisible(confirmPasswordMustMatchValidation);
-        if (confirmPasswordMustMatchValidation.isDisplayed()) {
+        if (confirmPasswordMustMatchVal.equals(confirmPasswordMustMatch)) {
             test.log(LogStatus.PASS, test.addScreenCapture(BasePage.getScreenCapture(driver)), "Verified Confirm Password must match validation is matched.");
             isTrue = true;
         } else {
