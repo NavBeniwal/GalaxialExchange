@@ -1362,6 +1362,7 @@ public class RegisterPageValidation {
     public boolean validateRegisterPageEmailTextFieldInvalidEmailAddressValidationWithQuotationMarkInsteadOfDot(String invalidEmail,ExtentTest test) throws IOException {
         boolean isTrue=false;
 
+        String registerEmail=PropertyReaderOptimized.getKeyValue("registerPageValidationEmail");
         String email="myemail@domain\"com";
 
         //Clear the value in the email name text field
@@ -1384,6 +1385,17 @@ public class RegisterPageValidation {
             isTrue=false;
             test.log(LogStatus.FAIL, test.addScreenCapture(BasePage.getScreenCapture(driver)), "Verified Please enter valid email validation isn't matched.");
         }
+
+        //Clear the value from the email name text field
+        basePage.waitForElementToBeVisible(emailTextField);
+        basePage.clearValue(emailTextField);
+        test.log(LogStatus.INFO,test.addScreenCapture(BasePage.getScreenCapture(driver)),"Verified cleared the value in the Email Text Field.");
+
+        //Enter the value in the email text field
+        basePage.waitForElementToBeVisible(emailTextField);
+        basePage.enterText(emailTextField,registerEmail);
+        test.log(LogStatus.INFO,test.addScreenCapture(BasePage.getScreenCapture(driver)),"Verified entered the value in the Email Text Field.");
+
         return isTrue;
     }
 
@@ -1540,6 +1552,7 @@ public class RegisterPageValidation {
         boolean isTrue = false;
 
         String password="Password123";
+        String correctPassword="Test@123";
 
         //Clear the value in the password text field
         basePage.waitForElementToBeVisible(passwordTextField);
@@ -1562,6 +1575,14 @@ public class RegisterPageValidation {
             isTrue = false;
         }
 
+        //Clear the value in the password text field
+        basePage.waitForElementToBeVisible(passwordTextField);
+        basePage.clearValue(passwordTextField);
+
+        //Enter the value in the password text field
+        basePage.waitForElementToBeVisible(passwordTextField);
+        basePage.enterText(passwordTextField,correctPassword);
+
         return isTrue;
     }
 
@@ -1569,6 +1590,7 @@ public class RegisterPageValidation {
         boolean isTrue = false;
 
         String mailinatorEmail = PropertyReaderOptimized.getKeyValue("registerPageValidationMailinatorEmail");
+        String correctConfirmPassword="Test@123";
         String confirmPassword="abcd";
 
         //Enter the value in the confirm-password text field
@@ -1595,13 +1617,14 @@ public class RegisterPageValidation {
 
         //Enter the value in the confirm-password text field
         basePage.waitForElementToBeVisible(confirmPasswordTextField);
-        basePage.enterText(confirmPasswordTextField,"Test@123");
+        basePage.enterText(confirmPasswordTextField,correctConfirmPassword);
 
         //Click on the create account button
         basePage.waitForElementToBeVisible(createAccountBtn);
         basePage.click(createAccountBtn);
 
         //Switch to the new window
+        basePage.threadSleep();
         driver.switchTo().newWindow(WindowType.WINDOW).navigate().to(PropertyReaderOptimized.getKeyValue("mailinatorUrl"));
 
         //Enter the value in the mailinator login text field
